@@ -6,6 +6,14 @@
 (106건)
 */
 
+select  employee_id
+        ,first_name
+        ,last_name
+        ,department_name
+from employees em, departments de
+where em.department_id = de.department_id
+order by department_name asc, employee_id desc;
+
 --문제 2
 /*employees 테이블의 job_id는 현재의 업무아이디를 가지고 있습니다.
 직원들의 사번(employee_id), 이름(firt_name), 급여(salary), 부서명(department_name), 현
@@ -14,10 +22,32 @@
 (106건)
 */
 
+select  employee_id
+        ,first_name
+        ,salary
+        ,department_name
+        ,job_title
+from employees em, departments de, jobs j
+where em.job_id = j.job_id
+and em.department_id = de.department_id
+order by employee_id asc;
+
+
 --문제 2-1
 /*문제2에서 부서가 없는 Kimberely(사번 178)까지 표시해 보세요
 (107건)
 */
+
+select  employee_id,
+        first_name,
+        salary,
+        department_name,
+        job_title
+from employees em, departments de, jobs j
+where em.job_id = j.job_id
+and em.department_id = de.department_id(+)
+order by employee_id asc;
+
 
 --문제 3
 /*도시별로 위치한 부서들을 파악하려고 합니다.
