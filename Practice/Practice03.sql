@@ -38,11 +38,11 @@ order by employee_id asc;
 (107건)
 */
 
-select  employee_id,
-        first_name,
-        salary,
-        department_name,
-        job_title
+select  employee_id
+        ,first_name
+        ,salary
+        ,department_name
+        ,job_title
 from employees em, departments de, jobs j
 where em.job_id = j.job_id
 and em.department_id = de.department_id(+)
@@ -55,17 +55,40 @@ order by employee_id asc;
 부서가 없는 도시는 표시하지 않습니다.
 (27건)
 */
+select  lo.location_id
+        ,lo.city
+        ,de.department_name
+        ,de.department_id
+from departments de, locations lo
+where de.location_id = lo.location_id
+order by location_id asc;
+
 
 --문제 3-1
 /*문제3에서 부서가 없는 도시도 표시합니다.
 (43건)
 */
 
+select  lo.location_id
+        ,lo.city
+        ,de.department_name
+        ,de.department_id
+from departments de, locations lo
+where de.location_id(+) = lo.location_id
+order by location_id asc;
+
 --문제 4
 /*지역(regions)에 속한 나라들을 지역이름(region_name), 나라이름(country_name)으로 출력하
 되 지역이름(오름차순), 나라이름(내림차순) 으로 정렬하세요.
 (25건)
 */
+
+select  region_name
+        ,country_name
+from regions re, countries co
+where re.region_id = co.region_id
+order by region_name asc, country_name desc;
+
 
 --문제 6
 /*나라별로 어떠한 부서들이 위치하고 있는지 파악하려고 합니다.
