@@ -98,6 +98,17 @@ order by region_name asc, country_name desc;
 (27건)
 */
 
+select  co.country_name
+        ,co.country_id
+        ,lo.city
+        ,lo.location_id
+        ,de.department_name
+        ,de.department_id
+from countries co, locations lo, departments de
+where co.country_id = lo.country_id
+and lo.location_id = de.location_id
+order by country_name asc;
+
 --문제 7
 /*job_history 테이블은 과거의 담당업무의 데이터를 가지고 있다.
 과거의 업무아이디(job_id)가 ‘AC_ACCOUNT’로 근무한 사원의 사번, 이름(풀네임), 업무아이
