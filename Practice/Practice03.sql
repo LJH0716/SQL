@@ -133,12 +133,33 @@ order by country_name asc;
 (2건)
 */
 
+select  em.employee_id
+        ,em.first_name || ' ' ||last_name as 풀네임
+        ,em.job_id
+        ,his.start_date
+        ,his.end_date
+from job_history his,employees em
+where his.employee_id = em.employee_id 
+and his.job_id = 'AC_ACCOUNT';
+
 --문제 8
 /*각 부서(department)에 대해서 부서번호(department_id), 부서이름(department_name), 
 매니저(manager)의 이름(first_name), 위치(locations)한 도시(city), 나라(countries)의 이름
 (countries_name) 그리고 지역구분(regions)의 이름(resion_name)까지 전부 출력해 보세요.
 (11건)
 */
+
+select  de.department_id
+        ,de.department_name
+        ,em.first_name
+        ,lo.city
+        ,co.country_name
+        ,rg.region_name
+from employees em, departments de, locations lo, countries co, regions rg
+where em.employee_id = de.manager_id
+and de.location_id = lo.location_id
+and lo.country_id = co.country_id
+and co.region_id = rg.region_id;
 
 --문제 9
 /*각 사원(employee)에 대해서 사번(employee_id), 이름(first_name), 부서명
@@ -147,5 +168,12 @@ order by country_name asc;
 (106명)
 */
 
+select  em.employee_id as 사번
+        ,em.first_name as 사원이름
+        ,de.department_name as 부서명
+        ,manag.first_name as 매니저이름
+from employees em, employees manag, departments de
+where em.manager_id = manag.employee_id
+and em.department_id = de.department_id(+); 
 
 
