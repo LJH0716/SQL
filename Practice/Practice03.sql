@@ -175,5 +175,5 @@ select  em.employee_id as 사번
 from employees em, employees manag, departments de
 where em.manager_id = manag.employee_id
 and em.department_id = de.department_id(+); 
-
+order by em.employee_id asc;
 
