@@ -96,6 +96,15 @@ order by region_name asc, country_name desc;
 (37건)
 */
 
+select  em.employee_id as 사번
+        ,em.first_name as 사원이름
+        ,em.hire_date as 사원입사일
+        ,manag.first_name as 매니저이름
+        ,manag.hire_date as 매니저입사일
+from employees em, employees manag
+where em.manager_id = manag.employee_id
+and em.hire_date < manag.hire_date;
+
 
 --문제 6
 /*나라별로 어떠한 부서들이 위치하고 있는지 파악하려고 합니다.
