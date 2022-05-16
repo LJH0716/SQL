@@ -89,6 +89,13 @@ from regions re, countries co
 where re.region_id = co.region_id
 order by region_name asc, country_name desc;
 
+--문제 5
+/*자신의 매니저보다 채용일(hire_date)이 빠른 사원의
+사번(employee_id), 이름(first_name)과 채용일(hire_date), 매니저이름(first_name), 매니저입
+사일(hire_date)을 조회하세요.
+(37건)
+*/
+
 
 --문제 6
 /*나라별로 어떠한 부서들이 위치하고 있는지 파악하려고 합니다.
@@ -123,3 +130,13 @@ order by country_name asc;
 (countries_name) 그리고 지역구분(regions)의 이름(resion_name)까지 전부 출력해 보세요.
 (11건)
 */
+
+--문제 9
+/*각 사원(employee)에 대해서 사번(employee_id), 이름(first_name), 부서명
+(department_name), 매니저(manager)의 이름(first_name)을 조회하세요.
+부서가 없는 직원(Kimberely)도 표시합니다.
+(106명)
+*/
+
+
+
