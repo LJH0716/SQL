@@ -17,6 +17,17 @@ where salary <ANY (select avg(salary)
 (51건)
 */
 
+select  employee_id
+        ,first_name
+        ,e.salary
+        ,s.avgsalary
+        ,s.maxsalary
+from employees e, (select avg(salary) avgsalary
+                         ,max(salary) maxsalary
+                          from employees) s
+where e.salary >= s.avgSalary
+and e.salary <= s.maxSalary
+order by salary asc;
 
 
 --문제 3
