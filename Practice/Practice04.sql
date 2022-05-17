@@ -76,7 +76,30 @@ order by salary desc;
 (11건)
 */
 
+--1.조건절 비교
+select  employee_id
+        ,first_name
+        ,salary
+        ,department_id
+from employees
+where (salary, department_id) in (select max (salary)
+                                         ,department_id
+                                  from employees
+                                  group by department_id)
+order by salary desc;
 
+--2.테이블 조인
+select employee_id
+       ,first_name
+       ,e.salary
+       ,e.department_id
+from employees e, (select max(salary) salary
+                          ,department_id
+                   from employees
+                   group by department_id) s
+where e.department_id = s.department_id
+and e.salary = s.salary
+order by salary desc;
 
 --문제 6
 /*각 업무(job) 별로 연봉(salary)의 총합을 구하고자 합니다. 
