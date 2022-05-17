@@ -38,6 +38,18 @@ order by salary asc;
 (1건)
 */
 
+select  lo.location_id
+        ,lo.street_address
+        ,lo.postal_code
+        ,lo.city
+        ,lo.state_province
+        ,lo.country_id
+from departments de, locations lo, (select department_id
+                                    from employees
+                                    where first_name ='Steven'
+                                    and last_name = 'King') em
+where de.location_id = lo.location_id
+and de.department_id = em.department_id;
 
 
 --문제 4
@@ -46,6 +58,14 @@ order by salary asc;
 (74건)
 */
 
+select  employee_id
+        ,first_name
+        ,salary
+from employees
+where salary <ANY(  select  em.salary
+                    from employees em
+                    where  job_id = 'ST_MAN')
+order by salary desc;
 
 
 --문제 5
