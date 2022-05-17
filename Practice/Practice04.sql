@@ -84,6 +84,14 @@ order by salary desc;
 (19건)
 */
 
+select  j.job_title as 업무명
+       ,s.salary as 연봉총합
+from jobs j, ( select job_id
+              ,sum(salary) salary
+              from employees
+              group by job_id) s
+where j.job_id = s.job_id
+order by s.salary desc;
 
 
 --문제 7
@@ -92,6 +100,15 @@ order by salary desc;
 (38건)
 */
 
+select  em.employee_id
+        ,em.first_name
+        ,em.salary
+from employees em, (select  department_id
+                            ,avg(salary) salary
+                    from employees
+                    group by department_id) s
+where em.department_id = s.department_id
+and em.salary > s.salary;
 
 
 --문제 8
