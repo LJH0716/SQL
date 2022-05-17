@@ -52,4 +52,37 @@ from employees
 where salary in (select salary
                 from employees
                 where department_id = 110); --12008,8300
+                
+--각 부서별로 최고급여를 받는 사원이름을 출력하세요
+--where절로 구하기
+select  department_id,
+        max(salary)
+from employees
+group by department_id;
+
+
+select  first_name,
+        salary,
+        department_id,
+        email
+from employees
+where (department_id, salary) in ( select  department_id,
+                                           max(salary)
+                                   from employees
+                                   group by department_id  );
+
+--각 부서별로 최고급여를 받는 사원이름을 출력하세요
+--테이블로 구하기
+
+select  e.first_name,
+        e.salary,
+        e.department_id,
+        s.department_id,
+        s.maxSalary
+from employees e, (select department_id, 
+                          max(salary) maxSalary
+                   from employees
+                   group by department_id) s  
+where e.department_id = s.department_id
+and e.salary = s.maxSalary;                
 
