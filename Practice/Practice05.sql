@@ -26,6 +26,19 @@ and commission_pct is null;
 (11건)
 */
 
+select  employee_id
+        ,first_name
+        ,salary
+        ,to_char(hire_date,'YYYY-MM-DD DAY')
+        ,replace(phone_number,'.','-')
+        ,department_id
+from employees
+where (department_id, salary) IN (select  department_id
+                                          ,max(salary)
+                                  from employees
+                                  group by department_id)
+order by salary desc;
+
 
 --문제 3
 /*매니저별 담당직원들의 평균급여 최소급여 최대급여를 알아보려고 한다.
