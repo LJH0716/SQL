@@ -127,7 +127,7 @@ where a.author_id = b.author_id;
 --문제 1. 강풀의 author_desc 정보를 ‘서울특별시’ 로 변경해 보세요
 update author
 set author_desc = '서울특별시'
-where author_name = '강풀';
+where author_id = 5;
 
 --문제 2. author 테이블에서 기안84 데이터를 삭제해 보세요 -> 삭제 안됨,이유?
 delete from author
