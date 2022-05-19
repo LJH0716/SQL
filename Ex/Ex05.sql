@@ -124,3 +124,7 @@ DELETE FROM author ;
 
 select *
 from author;
+
+--TRUNCATE 명령: 테이블의 모든 로우를 제거 --> DML delete문과 비교
+
+TRUNCATE TABLE article;
