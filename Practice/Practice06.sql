@@ -122,3 +122,17 @@ select  b.book_id
        ,a.author_desc
 from author a, book b
 where a.author_id = b.author_id;
+
+---------------------------------------------------------------------------------------------
+--문제 1. 강풀의 author_desc 정보를 ‘서울특별시’ 로 변경해 보세요
+update author
+set author_desc = '서울특별시'
+where author_name = '강풀';
+
+--문제 2. author 테이블에서 기안84 데이터를 삭제해 보세요 -> 삭제 안됨,이유?
+delete from author
+where author_id = 4;
+--book 테이블과 조인돼있어서 삭제 불가
+--ON DELETE CASCADE: 해당하는 FK를 가진 참조행도 삭제
+--ON DELETE SET NULL: 해당하는 FK를 NULL로 바꿈 으로 해결
+
