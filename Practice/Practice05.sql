@@ -51,6 +51,22 @@ order by salary desc;
 (9건)
 */
 
+select  em.manager_id
+        ,em.first_name
+        ,manag.avg
+        ,manag.min
+        ,manag.max
+from employees em, (select   manager_id
+                            ,round(avg(salary),0) avg
+                            ,min(salary) min
+                            ,max(salary) max
+                    from employees
+                    where hire_date >= '2005/01/01'
+                    group by manager_id
+                    having round(avg(salary),0) >= 5000) manag
+where em.employee_id = manag.manager_id
+order by manag.avg desc;
+
 
 --문제 4
 /*각 사원(employee)에 대해서 사번(employee_id), 이름(first_name), 부서명
