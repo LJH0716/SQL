@@ -75,6 +75,14 @@ order by manag.avg desc;
 (106명)
 */
 
+select  em.employee_id
+        ,em.first_name
+        ,de.department_name
+        ,manag.first_name
+from employees em, employees manag, departments de
+where em.manager_id = manag.employee_id
+and em.department_id = de.department_id(+);
+
 
 --문제 5
 /*2005년 이후 입사한 직원중에 입사일이 11번째에서 20번째의 직원의
@@ -86,6 +94,16 @@ order by manag.avg desc;
 /*가장 늦게 입사한 직원의 이름(first_name last_name)과 연봉(salary)과 근무하는 부서 이름
 (department_name)은?
 */
+
+select  em.first_name|| ' ' ||last_name as 이름
+        ,em.salary
+        ,de.department_name
+        ,em.hire_date
+from employees em, departments de
+where hire_date = (select max(hire_date)
+                   from employees)
+and em.department_id = de.department_id;
+
 
 --문제 7
 /*평균연봉(salary)이 가장 높은 부서 직원들의 직원번호(employee_id), 이름(firt_name), 성
