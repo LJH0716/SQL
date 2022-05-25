@@ -138,3 +138,20 @@ and em.salary > s.salary;
 /*직원 입사일이 11번째에서 15번째의 직원의 사번, 이름, 급여, 입사일을 입사일 순서로 출력
 하세요
 */
+
+
+select *
+from(select  rownum as 순번
+             ,ot.사번
+             ,ot.이름
+             ,ot.급여
+             ,ot.입사일
+      from (select  employee_id as 사번
+                   ,first_name as 이름
+                   ,salary as 급여
+                   ,hire_date as 입사일
+           from employees
+           order by hire_date asc) ot
+    )
+where 순번 >= 11
+and 순번 <= 15;
